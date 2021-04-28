@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\vinic\Desktop\TI\Git_SpringBoot\blogPessoal\blogPessoal"/>
 			<item value="C:\Users\vinic\Desktop\blogPessoal\blogPessoal"/>
 		</list>
 		<list key="projectNameTemplate">
