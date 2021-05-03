@@ -1,9 +1,9 @@
 package org.generation.blogPessoal.controller;
 
-import java.util.List;
+import java.util.List; //importação de lista
 
-import org.generation.blogPessoal.model.Postagem; //
-import org.generation.blogPessoal.repository.PostagemRepository;
+import org.generation.blogPessoal.model.Postagem; // importa model
+import org.generation.blogPessoal.repository.PostagemRepository; //importa repository
 import org.springframework.beans.factory.annotation.Autowired; //
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity; //
@@ -17,19 +17,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController; //
 
-@RestController
+@RestController  //classe de controlador
 @RequestMapping("/postagens")
-@CrossOrigin("*")
+@CrossOrigin("*") //indica que essa API aeitará requisições de qualquer lugar
 public class PostagemController {
 	
 	@Autowired
 	private PostagemRepository repository;
 	
-	@GetMapping
+	@GetMapping //quando a api for consumida acessará esse metodo
 	public ResponseEntity<List<Postagem>> GetAll(){
-		return ResponseEntity.ok(repository.findAll());
+		return ResponseEntity.ok(repository.findAll()); //chama o findAll que esta na interface repository
 	}
-	@GetMapping("/{id}")
+	@GetMapping("/{id}") //quando a api for consumida acessará esse metodo quando a pesquisa for por id
 	public ResponseEntity<Postagem> GetById(@PathVariable long id) {
 		return repository.findById(id)
 				.map(resp -> ResponseEntity.ok(resp)).
@@ -40,17 +40,17 @@ public class PostagemController {
 	public ResponseEntity<List<Postagem>> GetByTitulo(@PathVariable String titulo) {
 		return ResponseEntity.ok(repository.findAllByTituloContainingIgnoreCase(titulo));
 	}
-	@PostMapping
-	public ResponseEntity<Postagem> post (@RequestBody Postagem postagem){
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(postagem));
+	@PostMapping //permite alimentar os campos do db
+	public ResponseEntity<Postagem> post (@RequestBody Postagem postagem){ //pega o que vem no corpo de requisição
+		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(postagem)); //passa a confirmação de que a postagem foi criada e salva
 	}
 	
-	@PutMapping
-	public ResponseEntity<Postagem> put (@RequestBody Postagem postagem){
-		return ResponseEntity.status(HttpStatus.OK).body(repository.save(postagem));
+	@PutMapping //atualiza os campos do db
+	public ResponseEntity<Postagem> put (@RequestBody Postagem postagem){ //pega o que vem no corpo da requisição
+		return ResponseEntity.status(HttpStatus.OK).body(repository.save(postagem)); //salva a postagem e diz que o status da requisição foi aprovado
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/{id}") //deleta a postagem pelo numero do id
 	public void delete(@PathVariable long id) {
 		repository.deleteById(id);
 	}

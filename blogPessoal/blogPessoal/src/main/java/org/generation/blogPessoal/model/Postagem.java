@@ -1,6 +1,6 @@
 package org.generation.blogPessoal.model;
 
-import java.util.Date;
+import java.util.Date; //biblioteca de data
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,26 +15,26 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
-@Entity
-@Table(name = "postagem")
+@Entity //essa clase é uma entidade do jpa hibernate
+@Table(name = "postagem") //esta entidade cria uma tabela dentro do db
 public class Postagem {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	@Id //id da tabela
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //chave primaria - autoincremento do id
+	private long id; //argumentos
 
-	@NotNull
-	@Size(min = 5, max = 100)
+	@NotNull //indica que o argumento não pode ficar vazio no db
+	@Size(min = 5, max = 100) //indica a quantidade de caracteres
 	private String titulo;
 
 	@NotNull
 	@Size(min = 10, max = 500)
 	private String texto;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.TIMESTAMP) //indica como será computado a data
 	private Date date = new java.sql.Date(System.currentTimeMillis());
 	
-	@ManyToOne
+	@ManyToOne //muitos para um
 	@JsonIgnoreProperties("postagem")
 	private Tema tema;
 
