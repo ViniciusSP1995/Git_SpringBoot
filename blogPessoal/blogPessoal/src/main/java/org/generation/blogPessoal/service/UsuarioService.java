@@ -12,8 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder; //
 import org.springframework.stereotype.Service; //
 
 @Service //
-public class UsuarioService { //
-	@Autowired //
+public class UsuarioService { 
+	@Autowired 
 	private UsuarioRepository repository; //
 	
 	public Usuario CadastrarUsuario(Usuario usuario) { //
